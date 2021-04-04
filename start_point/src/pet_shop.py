@@ -29,4 +29,41 @@ def get_pets_by_breed(pet_shop_data, breed):
     return [pet for pet in pet_shop_data["pets"] 
             if pet["breed"] == breed]
 
-# 8: 
+# 8: uses above
+
+# 9: get pet by name
+def find_pet_by_name(pet_shop_data, pet_name):
+    for pet in pet_shop_data["pets"]:
+        if pet["name"] == pet_name:
+            return pet
+
+    return None
+
+# 10: remove pet by name
+def remove_pet_by_name(pet_shop_data, pet_name):
+    pet = find_pet_by_name(pet_shop_data, pet_name)
+
+    if pet != None:
+        pet_shop_data["pets"].remove(pet)
+
+
+# 11: add a new pet
+def add_pet_to_stock(pet_shop_data, new_pet):
+    pet_shop_data["pets"].append(new_pet)
+
+# 12: get how much cash a customer has
+def get_customer_cash(customer):
+    return customer["cash"]
+
+# 13: remove customer cash
+def remove_customer_cash(customer, amount):
+    customer["cash"] -= amount
+
+# 14: get number of pets customer has
+def get_customer_pet_count(customer):
+    return len(customer["pets"])
+
+# 15: add pet to a customer
+def add_pet_to_customer(customer, new_pet):
+    customer["pets"].append(new_pet)
+    
