@@ -88,7 +88,7 @@ def sell_pet_to_customer(pet_shop_data, pet, customer):
             add_or_remove_cash(pet_shop_data, pet["price"])
             add_pet_to_customer(customer, pet)
             increase_pets_sold(pet_shop_data, 1)
-            return "Transaction approved"
+            return "Transaction approved."
 
         else:
             sale_cancel_reason = "Customer has insufficient funds"
@@ -96,7 +96,7 @@ def sell_pet_to_customer(pet_shop_data, pet, customer):
     else:
         sale_cancel_reason = "Pet not found"
 
-    return "Transaction cancelled: Reason - " + sale_cancel_reason
+    return "Transaction cancelled: " + sale_cancel_reason
 
 
 
