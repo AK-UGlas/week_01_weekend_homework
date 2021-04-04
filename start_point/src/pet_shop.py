@@ -1,4 +1,6 @@
 # functions to run a pet shop
+import pdb
+
 
 # 1: get name of shop
 def get_pet_shop_name(pet_shop_data):
@@ -64,6 +66,39 @@ def get_customer_pet_count(customer):
     return len(customer["pets"])
 
 # 15: add pet to a customer
-def add_pet_to_customer(customer, new_pet):
-    customer["pets"].append(new_pet)
+def add_pet_to_customer(customer, pet):
+    customer["pets"].append(pet)
+
+# 16-18: test customer can afford pet
+def customer_can_afford_pet(customer, pet):
+    if get_customer_cash(customer) - pet["price"] < 0:
+        return False
+    
+    return True
+
+# 19: Integration test 1-3 - sell pet to a customer
+def sell_pet_to_customer(pet_shop_data, pet, customer):
+    # first, check the pet exists in stock
+    if pet != None:
+        
+        # next, check the customer can afford the pet
+        if customer_can_afford_pet(customer, pet):
+            remove_pet_by_name(pet_shop_data, pet["name"])
+            remove_customer_cash(customer, pet["price"])
+            add_or_remove_cash(pet_shop_data, pet["price"])
+            add_pet_to_customer(customer, pet)
+            increase_pets_sold(pet_shop_data, 1)
+            return "Transaction approved"
+
+        else:
+            sale_cancel_reason = "Customer has insufficient funds"
+
+    else:
+        sale_cancel_reason = "Pet not found"
+
+    return "Transaction cancelled: Reason - " + sale_cancel_reason
+
+
+
+
     
